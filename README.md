@@ -97,17 +97,23 @@ def iterate(a, b, x, y, times):
 ```
 - Начать итерацию 
 1. Инициализаци и модель итеративной оптимизации 
-![Screenshot_5](https://user-images.githubusercontent.com/100992984/191800152-ef5b34c3-0bd6-466a-8f8e-6277bc90abf7.png)
+![Screenshot_5](https://user-images.githubusercontent.com/100992984/191805481-8576660f-dc87-4d64-942c-6025ebe22801.png)
+
 2. На второй итерации отображаются значения параметров, значения потрерь и эффекты визуализации после итерации
-![Screenshot_6](https://user-images.githubusercontent.com/100992984/191800437-051506e3-a4c0-4139-85e7-2a20903ea0cf.png)
+![Screenshot_6](https://user-images.githubusercontent.com/100992984/191805510-be494e4e-0563-4b03-b4d9-4d42dbe5b96c.png)
+
 3. Третья итерация показывает значения параметров, значения потерь и визуализацию после итерации
-![Screenshot_7](https://user-images.githubusercontent.com/100992984/191800632-ce0d0707-25d8-43cd-ae7c-b4dc07879b43.png)
+![Screenshot_7](https://user-images.githubusercontent.com/100992984/191805530-b95bfcc6-023c-4bdb-b21d-bd9fad611a92.png)
+
 4. На четвертой итерации отображаются значения параметров, значения потерь и эффекты визуализации
-![Screenshot_8](https://user-images.githubusercontent.com/100992984/191800923-51d8dac5-8c4e-45d6-a50d-8b03d0aa7464.png)
+![Screenshot_8](https://user-images.githubusercontent.com/100992984/191805575-6e388906-f91a-46ff-a5ba-4000510b1fdd.png)
+
 5. Пятая итерация показывает значения параметра, значение потреь и эффект визуализации после итерации
-![Screenshot_9](https://user-images.githubusercontent.com/100992984/191801123-c923b9a2-41be-46ae-9f4b-fce1ec41546d.png)
+![Screenshot_9](https://user-images.githubusercontent.com/100992984/191805610-781b7ec1-1b6e-4374-bf50-53812128a61c.png)
+
 6. 10000-я итерация, показывающая значения параметров, потери и визуализацию после итерации
-![Screenshot_10](https://user-images.githubusercontent.com/100992984/191801564-d2598598-fb39-4a27-a668-c59af2b26104.png)
+![Screenshot_10](https://user-images.githubusercontent.com/100992984/191805629-3dda2647-29d5-414e-87e2-00ecaae5dee6.png)
+
 
 
 
