@@ -26,7 +26,7 @@
 
 ## Задание 1
 ### Написать программы Hello World на Python и Unity.
-- Hello World на Python
+- Hello World на Python в Google.Colab
 ![Screenshot_1](https://user-images.githubusercontent.com/100992984/191791503-36d9d8cf-accf-44d8-805f-d56baa58f0e2.png)
 ![Screenshot_2](https://user-images.githubusercontent.com/100992984/191791517-78358c55-f238-4bc0-a87d-716a9b6d6bd6.png)
 - Вывод Hello World в консоль Unity
