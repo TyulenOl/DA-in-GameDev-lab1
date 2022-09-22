@@ -1,14 +1,14 @@
 # АНАЛИЗ ДАННЫХ И ИСКУССТВЕННЫЙ ИНТЕЛЛЕКТ [in GameDev]
 Отчет по лабораторной работе #1 выполнил(а):
-- Иванова Ивана Варкравтовна
-- РИ000024
+- Тюленев Сергей Николаевич
+- РИ210912
 Отметка о выполнении заданий (заполняется студентом):
 
 | Задание | Выполнение | Баллы |
 | ------ | ------ | ------ |
-| Задание 1 | # | 60 |
-| Задание 2 | # | 20 |
-| Задание 3 | # | 20 |
+| Задание 1 | * | 60 |
+| Задание 2 | * | 20 |
+| Задание 3 | * | 20 |
 
 знак "*" - задание выполнено; знак "#" - задание не выполнено;
 
@@ -38,34 +38,80 @@
 Ознакомиться с основными операторами зыка Python на примере реализации линейной регрессии.
 
 ## Задание 1
+### Написать программы Hello World на Python и Unity.
+- Hello World на Python
+![Screenshot_1](https://user-images.githubusercontent.com/100992984/191791503-36d9d8cf-accf-44d8-805f-d56baa58f0e2.png)
+![Screenshot_2](https://user-images.githubusercontent.com/100992984/191791517-78358c55-f238-4bc0-a87d-716a9b6d6bd6.png)
+- Вывод Hello World в консоль Unity
+![Screenshot_3](https://user-images.githubusercontent.com/100992984/191791674-d5966707-8df8-45ce-9f10-54021a317729.png)
+
+
+## Задание 2
 ### Пошагово выполнить каждый пункт раздела "ход работы" с описанием и примерами реализации задач
 Ход работы:
 - Произвести подготовку данных для работы с алгоритмом линейной регрессии. 10 видов данных были установлены случайным образом, и данные находились в линейной зависимости. Данные преобразуются в формат массива, чтобы их можно было вычислить напрямую при использовании умножения и сложения.
 
 ```py
-
 In [ ]:
-#Import the required modules, numpy for calculation, and Matplotlib for drawing
 import numpy as np
 import matplotlib.pyplot as plt
-#This code is for jupyter Notebook only
-%matplotlib inline
 
-# define data, and change list to array
-x = [3,21,22,34,54,34,55,67,89,99]
+x = [3, 21, 22, 34, 54, 34, 55, 67, 89, 99]
 x = np.array(x)
-y = [2,22,24,65,79,82,55,130,150,199]
+y = [2, 22, 24, 65, 79, 82, 55, 130, 150, 199]
 y = np.array(y)
 
-#Show the effect of a scatter plot
-plt.scatter(x,y)
+plt.scatter(x, y)
+plt.show()
 
 ```
+![Screenshot_4](https://user-images.githubusercontent.com/100992984/191795739-5479b30b-1785-4893-829c-989fb22561f2.png)
 
 - Определите связанные функции. Функция модели: определяет модель линейной регрессии wx+b. Функция потерь: функция потерь среднеквадратичной ошибки. Функция оптимизации: метод градиентного спуска для нахождения частных производных w и b.
 
+```py
+def model(a, b, x):
+    return a * x + b
 
-## Задание 2
+
+def loss_function(a, b, x, y):
+    num = len(x)
+    prediction = model(a, b, x)
+    return (0.5 / num) * (np.square(prediction - y)).sum()
+
+
+def optimize(a, b, x, y):
+    num = len(x)
+    prediction = model(a, b, x)
+    da = (1.0 / num) * ((prediction - y) * x).sum()
+    db = (1.0 / num) * ((prediction - y).sum())
+    a = a - Lr * da
+    b = b - Lr * db
+    return a, b
+
+
+def iterate(a, b, x, y, times):
+    for i in range(times):
+        a, b = optimize(a, b, x, y)
+    return a, b
+```
+-Начать итерацию
+--Шаг 1 Инициализаци и модель итеративной оптимизации 
+![Screenshot_5](https://user-images.githubusercontent.com/100992984/191800152-ef5b34c3-0bd6-466a-8f8e-6277bc90abf7.png)
+--Шаг 2 На второй итерации отображаются значения параметров, значения потрерь и эффекты визуализации после итерации
+![Screenshot_6](https://user-images.githubusercontent.com/100992984/191800437-051506e3-a4c0-4139-85e7-2a20903ea0cf.png)
+--Шаг 3 Третья итерация показывает значения параметров, значения потерь и визуализацию после итерации
+![Screenshot_7](https://user-images.githubusercontent.com/100992984/191800632-ce0d0707-25d8-43cd-ae7c-b4dc07879b43.png)
+--Шаг 4 На четвертой итерации отображаются значения параметров, значения потерь и эффекты визуализации
+![Screenshot_8](https://user-images.githubusercontent.com/100992984/191800923-51d8dac5-8c4e-45d6-a50d-8b03d0aa7464.png)
+--Шаг 5 Пятая итерация показывает значения параметра, значение потреь и эффект визуализации после итерации
+![Screenshot_9](https://user-images.githubusercontent.com/100992984/191801123-c923b9a2-41be-46ae-9f4b-fce1ec41546d.png)
+--Шаг 6 10000-я итерация, показывающая значения параметров, потери и визуализацию после итерации
+![Screenshot_10](https://user-images.githubusercontent.com/100992984/191801564-d2598598-fb39-4a27-a668-c59af2b26104.png)
+
+
+
+## Задание 3
 ### Должна ли величина loss стремиться к нулю при изменении исходных данных? Ответьте на вопрос, приведите пример выполнения кода, который подтверждает ваш ответ.
 
 - Перечисленные в этом туториале действия могут быть выполнены запуском на исполнение скрипт-файла, доступного [в репозитории](https://github.com/Den1sovDm1triy/hfss-scripting/blob/main/ScreatingSphereInAEDT.py).
