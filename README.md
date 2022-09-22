@@ -43,7 +43,7 @@
 ![Screenshot_1](https://user-images.githubusercontent.com/100992984/191791503-36d9d8cf-accf-44d8-805f-d56baa58f0e2.png)
 ![Screenshot_2](https://user-images.githubusercontent.com/100992984/191791517-78358c55-f238-4bc0-a87d-716a9b6d6bd6.png)
 - Вывод Hello World в консоль Unity
-![Screenshot_3](https://user-images.githubusercontent.com/100992984/191791674-d5966707-8df8-45ce-9f10-54021a317729.png)
+![Screenshot_3](https://user-images.githubusercontent.com/100992984/191831042-0295bd75-b4b9-493b-a12c-adfb42aeca52.png)
 
 
 ## Задание 2
@@ -65,7 +65,8 @@ plt.scatter(x, y)
 plt.show()
 
 ```
-![Screenshot_4](https://user-images.githubusercontent.com/100992984/191795739-5479b30b-1785-4893-829c-989fb22561f2.png)
+![Screenshot_4](https://user-images.githubusercontent.com/100992984/191831208-37e7a64c-2165-4f77-8e7e-265043770c9f.png)
+
 
 - Определите связанные функции. Функция модели: определяет модель линейной регрессии wx+b. Функция потерь: функция потерь среднеквадратичной ошибки. Функция оптимизации: метод градиентного спуска для нахождения частных производных w и b.
 
@@ -140,21 +141,12 @@ def iterate(a, b, x, y, times):
 ![Screenshot_11](https://user-images.githubusercontent.com/100992984/191812930-d7bdd33b-474d-4500-bea5-cbe859c0f608.png)
 ![Screenshot_12](https://user-images.githubusercontent.com/100992984/191812939-5be2cda7-265f-4694-96d5-1a5721b258fa.png)
 
-При очень маленьких значения Lr график будет расти медленнее и точнее, следовательно, потребуется больше времени для получения оптимального решения. При слишком больших значениях Lr график может и вовсе пройти мимо минимального значения.
+При очень маленьких значения Lr график будет расти медленнее, но точнее и следовательно, потребуется больше времени для получения оптимального решения. При слишком больших значениях Lr график может и вовсе пройти мимо минимального значения.
 
 ## Выводы
 
-Абзац умных слов о том, что было сделано и что было узнано.
-
-| Plugin | README |
-| ------ | ------ |
-| Dropbox | [plugins/dropbox/README.md][PlDb] |
-| GitHub | [plugins/github/README.md][PlGh] |
-| Google Drive | [plugins/googledrive/README.md][PlGd] |
-| OneDrive | [plugins/onedrive/README.md][PlOd] |
-| Medium | [plugins/medium/README.md][PlMe] |
-| Google Analytics | [plugins/googleanalytics/README.md][PlGa] |
-
-## Powered by
-
-**BigDigital Team: Denisov | Fadeev | Panov**
+В ходе лабораторной работы:
+- Установил и запустил програмное обеспечение для работы с Python, а таже Unity.
+- Написал маленькие програмы по выводу Hello world в Google.Colab и в консоль Unity.
+- Ознакомился с Python на примере алгоритма линейной регрессии.
+- Рассмотрел работу линейной регрессии.
