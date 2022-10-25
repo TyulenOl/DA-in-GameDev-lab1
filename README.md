@@ -56,7 +56,6 @@ using Unity.MLAgents.Actuators;
 public class RollerAgent : Agent
 {
     Rigidbody rBody;
-    // Start is called before the first frame update
     void Start()
     {
         rBody = GetComponent<Rigidbody>();
