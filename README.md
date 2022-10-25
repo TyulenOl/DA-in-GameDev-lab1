@@ -26,6 +26,8 @@
 
 ## Задание 1
 ### Реализовать систему машинного обучения в связке Python - Google-Sheets – Unity.
+
+### Ход работы:
 -Создание нового 3D проекта на юнити:
 ![Screenshot_1](https://user-images.githubusercontent.com/100992984/197847376-ed839f31-ee20-4ad8-b584-281e2960a826.png)
 
@@ -150,21 +152,99 @@ behaviors:
     summary_freq: 10000 # Количество опытов, которое необходимо собрать перед генерацией и отображением статистики обучения.
 ```
 
+Компонент DecisionRequester автоматически запрашивает решения для экземпляра агента через регулярные промежутки времени.
 
+Компонент BehaviorParameters предназначен для настройки поведения экземпляра агента и свойств мозга.
 
 
 
 ## Задание 3
-### Самостоятельно разработать сценарий воспроизведения звукового сопровождения в Unity в зависимости от изменения считанных данных в задании 2.
+### Доработайте сцену и обучите ML-Agent таким образом, чтобы шар перемещался между двумя кубами разного цвета. Кубы должны, как и в первом задании, случайно изменять координаты на плоскости.
+
 ### Ход работы:
-#### Я решил, что звуковые сигналы будут воспроизводиться в зависимости от значения количества потерь. Чем меньше потерь, тем лучше, так как с уменьшение потерь график становится более точным. Поэтому прогрывание сигналов происходит по следующим правилам:
-* В случае, если после применения функции оптимизации количество потерь стало меньше, но не более чем на 75% от первичного значения, тогда воспроизводится неудовлетворительный звук. 
-* Если количество потерь после оптимизации находится в диапазоне от 75% до 90% от изначальных потерь, тогда воспроизводится звук удовлетворительного(среднего) результата. 
-* И, наконец, в случае, когда количество потерь опускается на 90% от исходного значения, тогда воспроизводится звук, означающий отличный результат.
+
+-Доработанный код для нахождения и перемещения агента до точки между двумя разноцветными кубами:
+```c#
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+using Unity.MLAgents;
+using Unity.MLAgents.Sensors;
+using Unity.MLAgents.Actuators;
+using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
+
+public class RollerAgent : Agent
+{
+    private Rigidbody rBody;
+
+    void Start()
+    {
+        rBody = GetComponent<Rigidbody>();
+    }
+
+    public Transform greenTarget;
+    public Transform blueTarget;
+
+    public override void OnEpisodeBegin()
+    {
+        if (this.transform.localPosition.y < 0)
+        {
+            this.rBody.angularVelocity = Vector3.zero;
+            this.rBody.velocity = Vector3.zero;
+            this.transform.localPosition = new Vector3(0, 0.5f, 0);
+        }
 
 
+        greenTarget.localPosition = new Vector3(Random.value * 8 - 4, 0.5f, Random.value * 8 - 4);
+        blueTarget.localPosition = new Vector3(Random.value * 8 - 4, 0.5f, Random.value * 8 - 4);
+    }
 
-https://user-images.githubusercontent.com/100992984/194640752-01c84a29-705e-4b97-bea9-b3be28e9ba98.mp4
+    public override void CollectObservations(VectorSensor sensor)
+    {
+        var pointBetweenTarget = (greenTarget.localPosition + blueTarget.localPosition) / 2;
+        sensor.AddObservation(pointBetweenTarget);
+        sensor.AddObservation(this.transform.localPosition);
+        sensor.AddObservation(rBody.velocity.x);
+        sensor.AddObservation(rBody.velocity.z);
+    }
+
+    public float forceMultiplier = 10;
+
+    public override void OnActionReceived(ActionBuffers actionsBuffers)
+    {
+        var controlSignal = Vector3.zero;
+        controlSignal.x = actionsBuffers.ContinuousActions[0];
+        controlSignal.z = actionsBuffers.ContinuousActions[1];
+        rBody.AddForce(controlSignal * forceMultiplier);
+
+        var pointBetweenTarget = (greenTarget.localPosition + blueTarget.localPosition) / 2;
+        var distanceToTarget = Vector3.Distance(this.transform.localPosition, pointBetweenTarget);
+
+        if (distanceToTarget < 1.42f)
+        {
+            SetReward(1.0f);
+            EndEpisode();
+        }
+        else if (this.transform.localPosition.y < 0)
+        {
+            EndEpisode();
+        }
+    }
+}
+```
+
+-Обучение агента для работы с двумя кубами:
+![Screenshot_10](https://user-images.githubusercontent.com/100992984/197856285-01e22ba2-c77b-4904-ac0b-5e84565c591e.png)
+
+-Результат работы модели с двумя разноцветными кубами после обучения:
+
+
+https://user-images.githubusercontent.com/100992984/197856566-042eb2af-6f7d-40c3-ab6a-78d7017c4282.mp4
+
+
 
 
 
