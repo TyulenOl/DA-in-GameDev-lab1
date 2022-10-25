@@ -99,7 +99,7 @@ public class RollerAgent : Agent
 
 ```
 
--Добавление необходимых компонетов для обекта сферы:
+-Добавление необходимых компонетов для обекта сферы:             
 ![Screenshot_9](https://user-images.githubusercontent.com/100992984/197850341-ffab02cf-d48e-456e-8b7d-ade233d51900.png)
 
 -Обучение с 1 экземпляром агента:
