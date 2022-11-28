@@ -149,17 +149,17 @@ public class Perceptron : MonoBehaviour {
 ```
 
 * #### Прикрепив данный скрипт в качестве компонента на пустой объект и подставляя разные наборы данных получаем:
-	- ##### Для логического оператора OR:__
-	Запустив программу несколько раз можно сказать, что обучение в среднем происходит за 3-4 прохода. Также хотелось бы отметить, что для оператора OR в среднем        обучение происходит быстее чем у других логических операторов.     
+	- ##### Для логического оператора OR:\
+	+ Запустив программу несколько раз можно сказать, что обучение в среднем происходит за 3-4 прохода. Также хотелось бы отметить, что для оператора OR в среднем        обучение происходит быстее чем у других логических операторов.     
 	
-		![OR](https://user-images.githubusercontent.com/100992984/204286013-57ac49a1-fa6a-46f8-a3e4-f1e5531e6246.png)
-		![OR2](https://user-images.githubusercontent.com/100992984/204286127-6de1e3e6-5b98-4f6d-9163-8c776fab0bb6.png)
+	![OR](https://user-images.githubusercontent.com/100992984/204286013-57ac49a1-fa6a-46f8-a3e4-f1e5531e6246.png)
+	![OR2](https://user-images.githubusercontent.com/100992984/204286127-6de1e3e6-5b98-4f6d-9163-8c776fab0bb6.png)
 
-	- ##### Для логического оператора AND:__
+	- ##### Для логического оператора AND:\
 	Для данного оператора обучение перцептронна проходило в среднем за 6-7 проходов.
 
-		![AND](https://user-images.githubusercontent.com/100992984/204287036-d91e7b8e-8061-434f-b4c3-715eb5d6ab7c.png)
-		![AND1](https://user-images.githubusercontent.com/100992984/204287114-a9cb4dee-b9a4-40e9-abce-5c0bcaafd1e7.png)
+	![AND](https://user-images.githubusercontent.com/100992984/204287036-d91e7b8e-8061-434f-b4c3-715eb5d6ab7c.png)
+	![AND1](https://user-images.githubusercontent.com/100992984/204287114-a9cb4dee-b9a4-40e9-abce-5c0bcaafd1e7.png)
 	
 
 
