@@ -288,19 +288,19 @@ public class StatisticsCSV : MonoBehaviour
 ![table](https://user-images.githubusercontent.com/100992984/204309531-2a0f49a4-f6fa-48ef-94b9-5a2cb6034d2d.png)
 
 ### Графики:
-* OR
+* OR: <br />
 ![graphOR](https://user-images.githubusercontent.com/100992984/204312514-cf7b2088-f7e7-41e5-af22-92a46f04c761.png)
 
 
-* AND
+* AND: <br />
 ![graphAND](https://user-images.githubusercontent.com/100992984/204313022-993f4878-3312-4cd7-b6d2-76e605b0e74c.png)
 
 
-* NAND
+* NAND: <br />
 ![graphNAND](https://user-images.githubusercontent.com/100992984/204313039-679d6f4b-b70e-4606-ada7-eea02bf141f1.png)
 
 
-* XOR
+* XOR: <br />
 ![graphXOR](https://user-images.githubusercontent.com/100992984/204313048-1c3e5fd2-3306-40bb-add3-1e216a050c49.png)
 
 
