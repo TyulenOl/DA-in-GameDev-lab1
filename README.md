@@ -155,8 +155,13 @@ public class Perceptron : MonoBehaviour {
 
 ![OR](https://user-images.githubusercontent.com/100992984/204286013-57ac49a1-fa6a-46f8-a3e4-f1e5531e6246.png)
 ![OR2](https://user-images.githubusercontent.com/100992984/204286127-6de1e3e6-5b98-4f6d-9163-8c776fab0bb6.png)
-+
-+
+
+
+
+
+
+
+
 2. ##### Для логического оператора AND:<br />
 +
 Для данного оператора обучение перцептронна проходило в среднем за 6-7 проходов.
