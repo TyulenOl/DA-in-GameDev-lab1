@@ -308,12 +308,12 @@ public class StatisticsCSV : MonoBehaviour
 ---
 ### Ход работы:
 
-### Для визуализации работы перцептрона я решил сделать 8 кубиков, которые падают друг на друга и при соприкосновении создают новый кубик.
+#### Для визуализации работы перцептрона я решил сделать 8 кубиков, которые падают друг на друга и при соприкосновении создают новый кубик.
 
-### На сцене я создал 8 кубиков с прикреплённым на них текстом и платформу, на которую кубы будут падать.
+#### Для начала на сцене я создал 8 кубиков с прикреплённым на них текстом и платформу, на которую кубы будут падать.
 ![scr1](https://user-images.githubusercontent.com/100992984/204333764-cff2c7a1-7778-4686-8d66-e4566fc39de8.png)
 
-### К каждому кубику я прикрепил компонент Rigidbody для использования физики, а также скрипт CubeData, который содержит метод для обработки столкновения и метод для сброса состояния куба.
+#### К каждому кубику я прикрепил компонент Rigidbody для использования физики, а также скрипт CubeData. Скрипт CubeData содержит метод OnTriggerEnter для обработки столкновения и метод ResetCube для сброса состояния куба. Метод OnTriggerEnter меняет соответствующим образом взаимодействующие кубы и передает необходимые данные в контроллер.
 ```csharp
 using System;
 using System.Collections;
@@ -357,6 +357,126 @@ public class CubeData : MonoBehaviour
 }
 ```
 ![scr2](https://user-images.githubusercontent.com/100992984/204350988-9cfcda90-9541-4ad0-8746-dd70e7222b24.png)
+
+#### Далее я создал кнопки для смены набора обучающих данных, что бы можно было менять логику поведения перцептрона.
+![scr3](https://user-images.githubusercontent.com/100992984/204352390-537968fe-2359-450a-ba7b-ad2d01d034d2.png)
+
+#### На каждую кнопку повесил скрипт ButtonChangeSet. Благодаря данному скрипту в кнопке можно хранить массив обучающих данных и при клике на кнопку передавать их в контроллер.
+```csharp
+using UnityEngine;
+
+public class ButtonChangeSet : MonoBehaviour
+{
+    [SerializeField] private TrainingSet[] ts;
+
+    public void ChangeSet()
+    {
+        Controller.Instance.OnButtonClick(ts);
+    }
+}
+```
+
+#### В свою очередь, контроллер - это пустой объект на который прикреплены скрипты Controller и Perceptron. 
+![scr4](https://user-images.githubusercontent.com/100992984/204353744-5ef3f013-0815-4ff5-a59a-97e94a16fcc0.png)
+
+#### Скрипт Controller принимает данные от кнопок и переобучает перцептрон. Также контроллер при получении данных от столкнувшихся кубов обрабатывает их занчения при помощи перцептрона и на основе результата стоздаёт необходимый куб. 
+```csharp
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine;
+
+public class Controller : MonoBehaviour
+{
+    [SerializeField] private Perceptron perceptron;
+
+    private static Controller instance;
+
+    public static Controller Instance
+    {
+        get
+        {
+            if(instance == null)
+            {
+                instance = FindObjectOfType(typeof(Controller)) as Controller;
+                if(instance == null)
+                {
+                    instance = new GameObject("Controller").AddComponent<Controller>();
+                }
+            }
+            return instance;
+        }
+    }
+
+    private GameObject[] cubes;
+    private List<GameObject> tempCubes = new List<GameObject>();
+
+    [SerializeField] private GameObject whiteCube;
+    [SerializeField] private GameObject blackCube;
+
+    private bool isActive;
+
+    private void Start()
+    {
+        cubes = GameObject.FindGameObjectsWithTag("Cube");
+    }
+
+    public void OnButtonClick(TrainingSet[] ts)
+    {
+        if(isActive)
+            return;
+        
+        isActive = true;
+        perceptron.Train(10, ts);
+        foreach (var cube in cubes)
+        {
+            cube.gameObject.GetComponent<Rigidbody>().useGravity = true;
+        }
+    }
+
+    public void ResetCubes()
+    {
+        foreach (var cube in cubes)
+        {
+            cube.gameObject.GetComponent<Rigidbody>().useGravity = false;
+            cube.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            cube.GetComponent<CubeData>().ResetCube();
+        }
+
+        foreach (var tempCube in tempCubes)
+        {
+            Destroy(tempCube);
+        }
+        tempCubes.Clear();
+
+        isActive = false;
+    }
+
+    public void HandleCollision(Vector3 position, double value1, double value2)
+    {
+        var output = perceptron.CalcOutput(value1, value2);
+        if (output == 0)
+        {
+            var tempCube = Instantiate(whiteCube, position, Quaternion.identity);
+            tempCubes.Add(tempCube);
+        }
+        else if (output == 1)
+        {
+            var tempCube = Instantiate(blackCube, position, Quaternion.identity);
+            tempCubes.Add(tempCube);
+        }
+    }
+}
+```
+
+#### Помимо этого, на сцене присутствует кнопка reset. При нажатии на эту кнопку происходит вызов метода ResetCubes из скрипта Controller. Метод ResetCubes сбрасывает состояния всех кубов, возвращая их в начальное положение.
+![scr5](https://user-images.githubusercontent.com/100992984/204357537-c44031b0-edcd-4ae4-8050-5678192e9f1a.png)
+
+### Демонстрация работы визуальной модели работы перцептрона:
+
+
+https://user-images.githubusercontent.com/100992984/204357828-b56d498c-b586-4230-8080-b918ff2a8479.mp4
 
 
 
