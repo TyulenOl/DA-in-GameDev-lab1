@@ -152,12 +152,38 @@ public class Perceptron : MonoBehaviour {
 1. #### Для логического оператора OR:<br /> 
 	+ #### Запустив программу несколько раз можно сказать, что обучение в среднем происходит за 3-4 прохода. Также хотелось бы отметить, что для оператора OR в среднем        обучение происходит быстее чем у других логических операторов. ####  
 	+ ![OR](https://user-images.githubusercontent.com/100992984/204286013-57ac49a1-fa6a-46f8-a3e4-f1e5531e6246.png)
-	+ ![OR2](https://user-images.githubusercontent.com/100992984/204286127-6de1e3e6-5b98-4f6d-9163-8c776fab0bb6.png)
+	+ ![OR3](https://user-images.githubusercontent.com/100992984/204302237-a7158457-948d-4f2b-a48b-521cb9b80a42.png)
+	+ ![OR4](https://user-images.githubusercontent.com/100992984/204302272-31923444-6611-46a1-8eb8-cae2e2d6b8fd.png)
+	+ ![OR5](https://user-images.githubusercontent.com/100992984/204302282-05d97633-0391-4b89-a077-b799ecf0f909.png)
+
  
 2. #### Для логического оператора AND:<br />
 	+ #### Для данного оператора обучение перцептронна проходило в среднем за 6-7 проходов. ####
 	+ ![AND](https://user-images.githubusercontent.com/100992984/204287036-d91e7b8e-8061-434f-b4c3-715eb5d6ab7c.png)
-	+ ![AND1](https://user-images.githubusercontent.com/100992984/204287114-a9cb4dee-b9a4-40e9-abce-5c0bcaafd1e7.png)
+	+ ![AND1](https://user-images.githubusercontent.com/100992984/204302498-645a4759-8977-4977-b7fa-4b2e4545828a.png)
+	+ ![AND2](https://user-images.githubusercontent.com/100992984/204302508-e6683b15-d45c-457a-a61b-198bc4c1fa0d.png)
+	+ ![AND3](https://user-images.githubusercontent.com/100992984/204302628-1a8ccbc5-934e-47d8-8081-e2aade2de526.png)
+
+
+3. #### Для логического оператора NAND:<br />
+	+ #### Обучение происходит примерно за такое же количество проходов как и с оператором AND. ####
+	+ ![NAND](https://user-images.githubusercontent.com/100992984/204301920-0d2054de-1afd-4657-97c5-3c44b8d09b02.png)
+	+ ![NAND4](https://user-images.githubusercontent.com/100992984/204302769-f55b89ce-fdea-49e0-95a9-26b7eeb73e3c.png)
+	+ ![NAND5](https://user-images.githubusercontent.com/100992984/204302784-dcb7756b-0864-47c6-80b3-b73a18152d03.png)
+	+ ![NAND6](https://user-images.githubusercontent.com/100992984/204302795-fb7364b4-9c41-4b3c-864b-f939339ef914.png)
+
+
+3. #### Для логического оператора XOR:<br />
+	+ #### Не проходит обучение даже после 100 и 500 проходов. Это связано с тем что однослойные персептроны могут работать только с линейно разделимыми данными. В нашем случае задача XOR является линейно неразделимой, а это значит, что персептрон не может её решить. ####
+	+ ![XOR](https://user-images.githubusercontent.com/100992984/204302968-6135af7e-6e38-4351-8ca5-0bab5450d79d.png)
+	+ ![XOR1](https://user-images.githubusercontent.com/100992984/204303024-ed1711bb-f776-4dfe-952d-3b72f7e7c396.png)
+	+ ![XOR2](https://user-images.githubusercontent.com/100992984/204303026-64deff57-3783-4b1a-8149-74a6886d4234.png)
+	+ ![XOR3](https://user-images.githubusercontent.com/100992984/204303034-253e507a-d3c1-4cf3-9e29-d188e556424d.png)
+
+
+
+
+
 	
 
 
