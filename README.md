@@ -34,7 +34,7 @@
 ### Ход работы:
 ### Код скрипта отвечающий за работу перцептрона ###
 
-```c#
+```csharp
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -150,7 +150,7 @@ public class Perceptron : MonoBehaviour {
 
 ### Прикрепив данный скрипт в качестве компонента на пустой объект и подставляя разные наборы данных получаем:
 1. #### Для логического оператора OR:<br /> 
-	+ #### Запустив программу несколько раз можно сказать, что обучение в среднем происходит за 3-4 прохода. Также хотелось бы отметить, что для оператора OR в среднем        обучение происходит быстее чем у других логических операторов. ####  
+	+ #### Запустив программу несколько раз можно сказать, что обучение в среднем происходит за 3-4 эпохи. Также хотелось бы отметить, что для оператора OR в среднем обучение происходит быстее чем у других логических операторов. ####  
 	+ ![OR](https://user-images.githubusercontent.com/100992984/204286013-57ac49a1-fa6a-46f8-a3e4-f1e5531e6246.png)
 	+ ![OR3](https://user-images.githubusercontent.com/100992984/204302237-a7158457-948d-4f2b-a48b-521cb9b80a42.png)
 	+ ![OR4](https://user-images.githubusercontent.com/100992984/204302272-31923444-6611-46a1-8eb8-cae2e2d6b8fd.png)
@@ -158,7 +158,7 @@ public class Perceptron : MonoBehaviour {
 
  
 2. #### Для логического оператора AND:<br />
-	+ #### Для данного оператора обучение перцептронна проходило в среднем за 6-7 проходов. ####
+	+ #### Для данного оператора обучение перцептронна проходило в среднем за 6-7 эпох. ####
 	+ ![AND](https://user-images.githubusercontent.com/100992984/204287036-d91e7b8e-8061-434f-b4c3-715eb5d6ab7c.png)
 	+ ![AND1](https://user-images.githubusercontent.com/100992984/204302498-645a4759-8977-4977-b7fa-4b2e4545828a.png)
 	+ ![AND2](https://user-images.githubusercontent.com/100992984/204302508-e6683b15-d45c-457a-a61b-198bc4c1fa0d.png)
@@ -166,7 +166,7 @@ public class Perceptron : MonoBehaviour {
 
 
 3. #### Для логического оператора NAND:<br />
-	+ #### Обучение происходит примерно за такое же количество проходов как и с оператором AND. ####
+	+ #### Обучение происходит примерно за такое же количество эпох как и с оператором AND. ####
 	+ ![NAND](https://user-images.githubusercontent.com/100992984/204301920-0d2054de-1afd-4657-97c5-3c44b8d09b02.png)
 	+ ![NAND4](https://user-images.githubusercontent.com/100992984/204302769-f55b89ce-fdea-49e0-95a9-26b7eeb73e3c.png)
 	+ ![NAND5](https://user-images.githubusercontent.com/100992984/204302784-dcb7756b-0864-47c6-80b3-b73a18152d03.png)
@@ -174,103 +174,118 @@ public class Perceptron : MonoBehaviour {
 
 
 3. #### Для логического оператора XOR:<br />
-	+ #### Не проходит обучение даже после 100 и 500 проходов. Это связано с тем что однослойные перцептроны могут работать только с линейно разделимыми данными. В нашем случае задача XOR является линейно неразделимой, а это значит, что перцептрон не может её решить. ####
+	+ #### Не проходит обучение даже после 100 и 500 эпох. Это связано с тем что однослойные перцептроны могут работать только с линейно разделимыми данными. В нашем случае задача XOR является линейно неразделимой, а это значит, что перцептрон не может её решить. ####
 	+ ![XOR](https://user-images.githubusercontent.com/100992984/204302968-6135af7e-6e38-4351-8ca5-0bab5450d79d.png)
 	+ ![XOR1](https://user-images.githubusercontent.com/100992984/204303024-ed1711bb-f776-4dfe-952d-3b72f7e7c396.png)
 	+ ![XOR2](https://user-images.githubusercontent.com/100992984/204303026-64deff57-3783-4b1a-8149-74a6886d4234.png)
 	+ ![XOR3](https://user-images.githubusercontent.com/100992984/204303034-253e507a-d3c1-4cf3-9e29-d188e556424d.png)
 
 
-
-
-
-	
-
-
-
-
-
-
-
 ## Задание 2
-### Пошагово выполнить каждый пункт раздела "ход работы" с описанием и примерами реализации задач
+### Построить графики зависимости количества эпох от ошибки обучения. Указать от чего зависит необходимое количество эпох обучения.
+---
 ### Ход работы:
-* #### Произвести подготовку данных для работы с алгоритмом линейной регрессии. 10 видов данных были установлены случайным образом, и данные находились в линейной зависимости. Данные преобразуются в формат массива, чтобы их можно было вычислить напрямую при использовании умножения и сложения.
+### Для построения графиков я написал скрипт, который после выполнения генерирует csv файл с необходимыми данными.
 
-```py
-In [ ]:
-import numpy as np
-import matplotlib.pyplot as plt
+```csharp
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using UnityEngine;
 
-x = [3, 21, 22, 34, 54, 34, 55, 67, 89, 99]
-x = np.array(x)
-y = [2, 22, 24, 65, 79, 82, 55, 130, 150, 199]
-y = np.array(y)
+public class StatisticsCSV : MonoBehaviour
+{
+    private string fileName = "";
 
-plt.scatter(x, y)
-plt.show()
+    private TrainingSet[] tsOR =
+    {
+        new(new double[] {0, 0}, 0),
+        new(new double[] {1, 0}, 1),
+        new(new double[] {0, 1}, 1),
+        new(new double[] {1, 1}, 1),
+    };
+    private TrainingSet[] tsAND = 
+    {
+        new(new double[] {0, 0}, 0),
+        new(new double[] {1, 0}, 0),
+        new(new double[] {0, 1}, 0),
+        new(new double[] {1, 1}, 1),
+    };
+    private TrainingSet[] tsNAND =
+    {
+        new(new double[] {0, 0}, 1),
+        new(new double[] {1, 0}, 1),
+        new(new double[] {0, 1}, 1),
+        new(new double[] {1, 1}, 0),
+    };
+    private TrainingSet[] tsXOR =
+    {
+        new(new double[] {0, 0}, 0),
+        new(new double[] {1, 0}, 1),
+        new(new double[] {0, 1}, 1),
+        new(new double[] {1, 1}, 0),
+    };
+    
+    [SerializeField]private Perceptron Perceptron;
 
+    private int numberEpochs = 10;
+    private int repetitionСount = 100;
+    
+    void Start()
+    {
+        fileName = $"{Application.dataPath}/statistic.csv";
+        var listOR = Statistic(tsOR);
+        var listAND = Statistic(tsAND);
+        var listNAND = Statistic(tsNAND);
+        var listXOR = Statistic(tsXOR);
+        WriteCSV(new[] {listOR, listAND, listNAND, listXOR});
+    }
+
+    private List<double> Statistic(TrainingSet[] ts)
+    {
+        var listReceivedValues = new List<double>[numberEpochs];
+
+        for (var i = 0; i < numberEpochs; i++)
+            listReceivedValues[i] = new List<double>();
+
+        for(var i = 0; i < repetitionСount; i++)
+        {
+            var listTotalErrors = Perceptron.Train(numberEpochs, ts);
+            for (var j = 0; j < listTotalErrors.Count; j++)
+            {
+                listReceivedValues[j].Add(listTotalErrors[j]);
+            }
+        }
+
+        var averageList = new List<double>();
+        foreach (var value in listReceivedValues)
+        {
+            averageList.Add(value.Average());
+        }
+
+        return averageList;
+    }
+
+    private void WriteCSV(List<double>[] array)
+    {
+        var textWriter = new StreamWriter(fileName, false);
+        textWriter.WriteLine("Epoch number; OR; AND; NAND; XOR");
+        textWriter.Close();
+        
+        textWriter = new StreamWriter(fileName, true);
+
+        for (int i = 0; i < numberEpochs; i++)
+        {
+            textWriter.WriteLine($"{i + 1}; {array[0][i]:0.00}; {array[1][i]:0.00}; {array[2][i]:0.00}; {array[3][i]:0.00}");
+        }
+        textWriter.Close();
+    }
+}
 ```
-![Screenshot_4](https://user-images.githubusercontent.com/100992984/191831208-37e7a64c-2165-4f77-8e7e-265043770c9f.png)
+Данный скрипт запускает обучение перцептрона 100 раз для каждого логического оператора и из полученных результатов вычисляет средее арифметическое количества ошибок для каждой эпохи. Из полученных данных генерируется csv фаил на основе которых можно построить необходимые графики.
+![table](https://user-images.githubusercontent.com/100992984/204309531-2a0f49a4-f6fa-48ef-94b9-5a2cb6034d2d.png)
 
 
-* #### Определите связанные функции. Функция модели: определяет модель линейной регрессии wx+b. Функция потерь: функция потерь среднеквадратичной ошибки. Функция оптимизации: метод градиентного спуска для нахождения частных производных w и b.
-
-```py
-import numpy as np
-import matplotlib.pyplot as plt
-
-x = [3, 21, 22, 34, 54, 34, 55, 67, 89, 99]
-x = np.array(x)
-y = [2, 22, 24, 65, 79, 82, 55, 130, 150, 199]
-y = np.array(y)
-
-plt.scatter(x, y)
-
-
-def model(a, b, x):
-    return a * x + b
-
-
-def loss_function(a, b, x, y):
-    num = len(x)
-    prediction = model(a, b, x)
-    return (0.5 / num) * (np.square(prediction - y)).sum()
-
-
-def optimize(a, b, x, y):
-    num = len(x)
-    prediction = model(a, b, x)
-    da = (1.0 / num) * ((prediction - y) * x).sum()
-    db = (1.0 / num) * ((prediction - y).sum())
-    a = a - Lr * da
-    b = b - Lr * db
-    return a, b
-
-
-def iterate(a, b, x, y, times):
-    for i in range(times):
-        a, b = optimize(a, b, x, y)
-    return a, b
-```
-* #### Начать итерацию 
-1. Инициализаци и модель итеративной оптимизации 
-![Screenshot_5](https://user-images.githubusercontent.com/100992984/191805481-8576660f-dc87-4d64-942c-6025ebe22801.png)
-
-2. На второй итерации отображаются значения параметров, значения потрерь и эффекты визуализации после итерации
-![Screenshot_6](https://user-images.githubusercontent.com/100992984/191805510-be494e4e-0563-4b03-b4d9-4d42dbe5b96c.png)
-
-3. Третья итерация показывает значения параметров, значения потерь и визуализацию после итерации
-![Screenshot_7](https://user-images.githubusercontent.com/100992984/191805530-b95bfcc6-023c-4bdb-b21d-bd9fad611a92.png)
-
-4. На четвертой итерации отображаются значения параметров, значения потерь и эффекты визуализации
-![Screenshot_8](https://user-images.githubusercontent.com/100992984/191805575-6e388906-f91a-46ff-a5ba-4000510b1fdd.png)
-
-5. Пятая итерация показывает значения параметра, значение потреь и эффект визуализации после итерации
-![Screenshot_9](https://user-images.githubusercontent.com/100992984/191805610-781b7ec1-1b6e-4374-bf50-53812128a61c.png)
-
-6. 10000-я итерация, показывающая значения параметров, потери и визуализацию после итерации
-![Screenshot_10](https://user-images.githubusercontent.com/100992984/191805629-3dda2647-29d5-414e-87e2-00ecaae5dee6.png)
 
 
 ## Задание 3
