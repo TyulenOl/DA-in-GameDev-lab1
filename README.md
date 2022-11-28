@@ -300,25 +300,67 @@ public class StatisticsCSV : MonoBehaviour
 * XOR: <br />
 ![graphXOR](https://user-images.githubusercontent.com/100992984/204314160-cc42cb12-d198-4473-a567-a252da52c63d.png)
 
-
-
+### Количество эпох обучения зависит от сложности операции, которую перцептрон пытается научиться решать, а также от того насколько удачно изначатьно были подобранны веса и смещение.
 
 
 ## Задание 3
-### Изучить код на Python и ответить на вопросы:
-### 1. Должна ли величина loss стремиться к нулю при изменении исходных данных? Ответьте на вопрос, приведите пример выполнения кода, который подтверждает ваш ответ.
-Величина loss будет равна нулю, если исходные данные x и y будут заданы линейной функцией и коэффициент b = 0
-![Screenshot_13](https://user-images.githubusercontent.com/100992984/191829750-eaeb35b6-e298-4cc4-907b-834148887ec9.png)
+### Построить визуальную модель работы перцептрона на сцене Unity.
+---
+### Ход работы:
+
+### Для визуализации работы перцептрона я решил сделать 8 кубиков, которые падают друг на друга и при соприкосновении создают новый кубик.
+
+### На сцене я создал 8 кубиков с прикреплённым на них текстом и платформу, на которую кубы будут падать.
+![scr1](https://user-images.githubusercontent.com/100992984/204333764-cff2c7a1-7778-4686-8d66-e4566fc39de8.png)
+
+### К каждому кубику я прикрепил компонент Rigidbody для использования физики, а также скрипт CubeData, который содержит метод для обработки столкновения и метод для сброса состояния куба.
+```csharp
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+
+public class CubeData : MonoBehaviour
+{
+    public double value;
+    public Material cubeColor;
+    public Color textColor;
+
+    private Vector3 initialPosition;
+
+    private void Start()
+    {
+        gameObject.name = value.ToString();
+        gameObject.GetComponent<MeshRenderer>().material = cubeColor;
+        GetComponentInChildren<TextMeshPro>().SetText(value.ToString());
+        textColor.a = 1;
+        GetComponentInChildren<TextMeshPro>().color = textColor;
+        initialPosition = transform.position;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        other.gameObject.SetActive(false);
+        gameObject.SetActive(false);
+        var valueCube1 = value;
+        var valueCube2 = other.gameObject.GetComponent<CubeData>().value;
+        if(gameObject.GetComponent<BoxCollider>().isTrigger)
+            Controller.Instance.HandleCollision(other.transform.position, valueCube1, valueCube2);
+    }
+
+    public void ResetCube()
+    {
+        this.gameObject.SetActive(true);
+        transform.position = initialPosition;
+    }
+}
+```
+![scr2](https://user-images.githubusercontent.com/100992984/204350988-9cfcda90-9541-4ad0-8746-dd70e7222b24.png)
 
 
-### 2. Какова роль параметра Lr? Ответьте на вопрос, приведите пример выполнения кода, который подтверждает ваш ответ. В качестве эксперимента можете изменить значение параметра.
-Параметр Lr отвечает за величину шага, от которой зависит, насколько быстро или медленно будет происходить достижение оптимальных значений. 
-Чем больше параметр Lr, тем быстее будет происходить возрастание графика.
-Так, при Lr=0.0002 график за 10 повторений достигает примерно тех же значений, что и при Lr=0.000001 за 10000 повторений.
-![Screenshot_11](https://user-images.githubusercontent.com/100992984/191812930-d7bdd33b-474d-4500-bea5-cbe859c0f608.png)
-![Screenshot_12](https://user-images.githubusercontent.com/100992984/191812939-5be2cda7-265f-4694-96d5-1a5721b258fa.png)
 
-При очень маленьких значения Lr можно получить более точный график, но он будет расти медленнее и следовательно, потребуется больше времени для получения оптимального решения. При слишком больших значениях Lr график может и вовсе пройти мимо минимального значения.
+
 
 ## Выводы
 
