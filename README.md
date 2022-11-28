@@ -22,15 +22,15 @@
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
 ## Цель работы
-Ознакомиться с основными операторами зыка Python на примере реализации линейной регрессии.
+Узнать что такое перцептрон и ознакомиться с тем, как он работет.
 
 ## Задание 1
-### Написать программы Hello World на Python и Unity.
-- Hello World на Python в Google.Colab
-![Screenshot_1](https://user-images.githubusercontent.com/100992984/191791503-36d9d8cf-accf-44d8-805f-d56baa58f0e2.png)
-![Screenshot_2](https://user-images.githubusercontent.com/100992984/191791517-78358c55-f238-4bc0-a87d-716a9b6d6bd6.png)
-- Вывод Hello World в консоль Unity
-![Screenshot_3](https://user-images.githubusercontent.com/100992984/191831042-0295bd75-b4b9-493b-a12c-adfb42aeca52.png)
+### В проекте Unity реализовать перцептрон, который умеет производить вычисления:
+### * OR | дать комментарии о корректности работы
+### * AND | дать комментарии о корректности работы
+### * NAND | дать комментарии о корректности работы
+### * XOR | дать комментарии о корректности работы
+
 
 
 ## Задание 2
