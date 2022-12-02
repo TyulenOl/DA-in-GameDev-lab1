@@ -1,5 +1,5 @@
 # АНАЛИЗ ДАННЫХ И ИСКУССТВЕННЫЙ ИНТЕЛЛЕКТ [in GameDev]
-Отчет по лабораторной работе #1 выполнил(а):
+Отчет по лабораторной работе #5 выполнил(а):
 - Тюленев Сергей Николаевич
 - РИ210912
 
@@ -7,9 +7,8 @@
 
 | Задание | Выполнение | Баллы |
 | ------ | ------ | ------ |
-| Задание 1 | * | 60 |
+| Задание 1 | * | 80 |
 | Задание 2 | * | 20 |
-| Задание 3 | * | 20 |
 
 
 Работу проверили:
@@ -22,118 +21,367 @@
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
 ## Цель работы
-Ознакомиться с основными операторами зыка Python на примере реализации линейной регрессии.
+### Интеграция экономической системы в проект Unity и обучение ML-Agent.
 
 ## Задание 1
-### Написать программы Hello World на Python и Unity.
-- Hello World на Python в Google.Colab
-![Screenshot_1](https://user-images.githubusercontent.com/100992984/191791503-36d9d8cf-accf-44d8-805f-d56baa58f0e2.png)
-![Screenshot_2](https://user-images.githubusercontent.com/100992984/191791517-78358c55-f238-4bc0-a87d-716a9b6d6bd6.png)
-- Вывод Hello World в консоль Unity
-![Screenshot_3](https://user-images.githubusercontent.com/100992984/191831042-0295bd75-b4b9-493b-a12c-adfb42aeca52.png)
+###  Измените параметры файла. yaml-агента и определить какие параметры и как влияют на обучение модели.
+---
+### Ход работы:
+### Установка необходимых компонетнов для работы с ML-агентом ###
+![3](https://user-images.githubusercontent.com/100992984/205153159-d17612cb-5d86-419c-8622-1c03aa4358d8.png)
+![4](https://user-images.githubusercontent.com/100992984/205153307-98140c5e-95c8-444b-a351-489bd66ca606.png)
+![5](https://user-images.githubusercontent.com/100992984/205153320-dbb549f1-4ed3-4023-8cfb-1624994cf773.png)
+
+### Перед запуском обучения агента решил изменить максимальное количество шагов(max_steps) с 750000 до 100000.
+![123](https://user-images.githubusercontent.com/100992984/205154820-8153a4c0-f6a6-42b1-85a6-2b9751ebc914.png)
+
+### Начало и результат обучения предложенной модели.
+![6](https://user-images.githubusercontent.com/100992984/205154970-33413061-968d-44c2-951e-cb53d176176e.png)
+![economic_res](https://user-images.githubusercontent.com/100992984/205155040-89f87941-7b41-46d5-b937-2d1a46d26258.png)
+
+### Установка TensorBoard для посторения графиков, чтобы впоследстии оценивать результаты обучения.
+![8](https://user-images.githubusercontent.com/100992984/205155569-172c1999-1138-4e27-9497-672adb05c531.png)
+
+
+
+### Прикрепив данный скрипт в качестве компонента на пустой объект и подставляя разные наборы данных получаем:
+1. #### Для логического оператора OR:<br /> 
+	+ #### Запустив программу несколько раз можно сказать, что обучение в среднем происходит за 3-4 эпохи. Также хотелось бы отметить, что для оператора OR в среднем обучение происходит быстрее чем у других логических операторов. ####  
+	+ ![OR](https://user-images.githubusercontent.com/100992984/204286013-57ac49a1-fa6a-46f8-a3e4-f1e5531e6246.png)
+	+ ![OR3](https://user-images.githubusercontent.com/100992984/204302237-a7158457-948d-4f2b-a48b-521cb9b80a42.png)
+	+ ![OR4](https://user-images.githubusercontent.com/100992984/204302272-31923444-6611-46a1-8eb8-cae2e2d6b8fd.png)
+	+ ![OR5](https://user-images.githubusercontent.com/100992984/204302282-05d97633-0391-4b89-a077-b799ecf0f909.png)
+
+ 
+2. #### Для логического оператора AND:<br />
+	+ #### Для данного оператора обучение перцептронна проходило в среднем за 6-7 эпох. ####
+	+ ![AND](https://user-images.githubusercontent.com/100992984/204287036-d91e7b8e-8061-434f-b4c3-715eb5d6ab7c.png)
+	+ ![AND1](https://user-images.githubusercontent.com/100992984/204302498-645a4759-8977-4977-b7fa-4b2e4545828a.png)
+	+ ![AND2](https://user-images.githubusercontent.com/100992984/204302508-e6683b15-d45c-457a-a61b-198bc4c1fa0d.png)
+	+ ![AND3](https://user-images.githubusercontent.com/100992984/204302628-1a8ccbc5-934e-47d8-8081-e2aade2de526.png)
+
+
+3. #### Для логического оператора NAND:<br />
+	+ #### Обучение происходит примерно за такое же количество эпох как и с оператором AND. ####
+	+ ![NAND](https://user-images.githubusercontent.com/100992984/204301920-0d2054de-1afd-4657-97c5-3c44b8d09b02.png)
+	+ ![NAND4](https://user-images.githubusercontent.com/100992984/204302769-f55b89ce-fdea-49e0-95a9-26b7eeb73e3c.png)
+	+ ![NAND5](https://user-images.githubusercontent.com/100992984/204302784-dcb7756b-0864-47c6-80b3-b73a18152d03.png)
+	+ ![NAND6](https://user-images.githubusercontent.com/100992984/204302795-fb7364b4-9c41-4b3c-864b-f939339ef914.png)
+
+
+3. #### Для логического оператора XOR:<br />
+	+ #### Не проходит обучение даже после 100 и 500 эпох. Это связано с тем что однослойные перцептроны могут работать только с линейно разделимыми данными. В нашем случае задача XOR является линейно неразделимой, а это значит, что перцептрон не может её решить. ####
+	+ ![XOR](https://user-images.githubusercontent.com/100992984/204302968-6135af7e-6e38-4351-8ca5-0bab5450d79d.png)
+	+ ![XOR1](https://user-images.githubusercontent.com/100992984/204303024-ed1711bb-f776-4dfe-952d-3b72f7e7c396.png)
+	+ ![XOR2](https://user-images.githubusercontent.com/100992984/204303026-64deff57-3783-4b1a-8149-74a6886d4234.png)
+	+ ![XOR3](https://user-images.githubusercontent.com/100992984/204303034-253e507a-d3c1-4cf3-9e29-d188e556424d.png)
 
 
 ## Задание 2
-### Пошагово выполнить каждый пункт раздела "ход работы" с описанием и примерами реализации задач
+### Построить графики зависимости количества эпох от ошибки обучения. Указать от чего зависит необходимое количество эпох обучения.
+---
 ### Ход работы:
-* #### Произвести подготовку данных для работы с алгоритмом линейной регрессии. 10 видов данных были установлены случайным образом, и данные находились в линейной зависимости. Данные преобразуются в формат массива, чтобы их можно было вычислить напрямую при использовании умножения и сложения.
+### Для построения графиков я написал скрипт, который после выполнения генерирует csv файл с необходимыми данными.
 
-```py
-In [ ]:
-import numpy as np
-import matplotlib.pyplot as plt
+```csharp
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using UnityEngine;
 
-x = [3, 21, 22, 34, 54, 34, 55, 67, 89, 99]
-x = np.array(x)
-y = [2, 22, 24, 65, 79, 82, 55, 130, 150, 199]
-y = np.array(y)
+public class StatisticsCSV : MonoBehaviour
+{
+    private string fileName = "";
 
-plt.scatter(x, y)
-plt.show()
+    private TrainingSet[] tsOR =
+    {
+        new(new double[] {0, 0}, 0),
+        new(new double[] {1, 0}, 1),
+        new(new double[] {0, 1}, 1),
+        new(new double[] {1, 1}, 1),
+    };
+    private TrainingSet[] tsAND = 
+    {
+        new(new double[] {0, 0}, 0),
+        new(new double[] {1, 0}, 0),
+        new(new double[] {0, 1}, 0),
+        new(new double[] {1, 1}, 1),
+    };
+    private TrainingSet[] tsNAND =
+    {
+        new(new double[] {0, 0}, 1),
+        new(new double[] {1, 0}, 1),
+        new(new double[] {0, 1}, 1),
+        new(new double[] {1, 1}, 0),
+    };
+    private TrainingSet[] tsXOR =
+    {
+        new(new double[] {0, 0}, 0),
+        new(new double[] {1, 0}, 1),
+        new(new double[] {0, 1}, 1),
+        new(new double[] {1, 1}, 0),
+    };
+    
+    [SerializeField]private Perceptron Perceptron;
 
+    private int numberEpochs = 10;
+    private int repetitionСount = 100;
+    
+    void Start()
+    {
+        fileName = $"{Application.dataPath}/statistic.csv";
+        var listOR = Statistic(tsOR);
+        var listAND = Statistic(tsAND);
+        var listNAND = Statistic(tsNAND);
+        var listXOR = Statistic(tsXOR);
+        WriteCSV(new[] {listOR, listAND, listNAND, listXOR});
+    }
+
+    private List<double> Statistic(TrainingSet[] ts)
+    {
+        var listReceivedValues = new List<double>[numberEpochs];
+
+        for (var i = 0; i < numberEpochs; i++)
+            listReceivedValues[i] = new List<double>();
+
+        for(var i = 0; i < repetitionСount; i++)
+        {
+            var listTotalErrors = Perceptron.Train(numberEpochs, ts);
+            for (var j = 0; j < listTotalErrors.Count; j++)
+            {
+                listReceivedValues[j].Add(listTotalErrors[j]);
+            }
+        }
+
+        var averageList = new List<double>();
+        foreach (var value in listReceivedValues)
+        {
+            averageList.Add(value.Average());
+        }
+
+        return averageList;
+    }
+
+    private void WriteCSV(List<double>[] array)
+    {
+        var textWriter = new StreamWriter(fileName, false);
+        textWriter.WriteLine("Epoch number; OR; AND; NAND; XOR");
+        textWriter.Close();
+        
+        textWriter = new StreamWriter(fileName, true);
+
+        for (int i = 0; i < numberEpochs; i++)
+        {
+            textWriter.WriteLine($"{i + 1}; {array[0][i]:0.00}; {array[1][i]:0.00}; {array[2][i]:0.00}; {array[3][i]:0.00}");
+        }
+        textWriter.Close();
+    }
+}
 ```
-![Screenshot_4](https://user-images.githubusercontent.com/100992984/191831208-37e7a64c-2165-4f77-8e7e-265043770c9f.png)
+### Данный скрипт запускает обучение перцептрона 100 раз для каждого логического оператора и из полученных результатов вычисляет среднее арифметическое количества ошибок для каждой эпохи. Из полученных данных генерируется csv файл на основе которых можно построить необходимые графики.<br />
 
+### Полученные данные:
+![table](https://user-images.githubusercontent.com/100992984/204309531-2a0f49a4-f6fa-48ef-94b9-5a2cb6034d2d.png)
 
-* #### Определите связанные функции. Функция модели: определяет модель линейной регрессии wx+b. Функция потерь: функция потерь среднеквадратичной ошибки. Функция оптимизации: метод градиентного спуска для нахождения частных производных w и b.
+### Графики:
+* OR: <br />
+![graphOR](https://user-images.githubusercontent.com/100992984/204314116-2498a890-d192-40a3-becd-3736e79f3487.png)
 
-```py
-import numpy as np
-import matplotlib.pyplot as plt
+* AND: <br />
+![graphAND](https://user-images.githubusercontent.com/100992984/204314137-64bf015f-4f6a-4036-bc9d-7b28eb7347ab.png)
 
-x = [3, 21, 22, 34, 54, 34, 55, 67, 89, 99]
-x = np.array(x)
-y = [2, 22, 24, 65, 79, 82, 55, 130, 150, 199]
-y = np.array(y)
+* NAND: <br />
+![graphNAND](https://user-images.githubusercontent.com/100992984/204314155-74c3c745-cd90-4e2d-b49c-1c4abe099f07.png)
 
-plt.scatter(x, y)
+* XOR: <br />
+![graphXOR](https://user-images.githubusercontent.com/100992984/204314160-cc42cb12-d198-4473-a567-a252da52c63d.png)
 
-
-def model(a, b, x):
-    return a * x + b
-
-
-def loss_function(a, b, x, y):
-    num = len(x)
-    prediction = model(a, b, x)
-    return (0.5 / num) * (np.square(prediction - y)).sum()
-
-
-def optimize(a, b, x, y):
-    num = len(x)
-    prediction = model(a, b, x)
-    da = (1.0 / num) * ((prediction - y) * x).sum()
-    db = (1.0 / num) * ((prediction - y).sum())
-    a = a - Lr * da
-    b = b - Lr * db
-    return a, b
-
-
-def iterate(a, b, x, y, times):
-    for i in range(times):
-        a, b = optimize(a, b, x, y)
-    return a, b
-```
-* #### Начать итерацию 
-1. Инициализаци и модель итеративной оптимизации 
-![Screenshot_5](https://user-images.githubusercontent.com/100992984/191805481-8576660f-dc87-4d64-942c-6025ebe22801.png)
-
-2. На второй итерации отображаются значения параметров, значения потрерь и эффекты визуализации после итерации
-![Screenshot_6](https://user-images.githubusercontent.com/100992984/191805510-be494e4e-0563-4b03-b4d9-4d42dbe5b96c.png)
-
-3. Третья итерация показывает значения параметров, значения потерь и визуализацию после итерации
-![Screenshot_7](https://user-images.githubusercontent.com/100992984/191805530-b95bfcc6-023c-4bdb-b21d-bd9fad611a92.png)
-
-4. На четвертой итерации отображаются значения параметров, значения потерь и эффекты визуализации
-![Screenshot_8](https://user-images.githubusercontent.com/100992984/191805575-6e388906-f91a-46ff-a5ba-4000510b1fdd.png)
-
-5. Пятая итерация показывает значения параметра, значение потреь и эффект визуализации после итерации
-![Screenshot_9](https://user-images.githubusercontent.com/100992984/191805610-781b7ec1-1b6e-4374-bf50-53812128a61c.png)
-
-6. 10000-я итерация, показывающая значения параметров, потери и визуализацию после итерации
-![Screenshot_10](https://user-images.githubusercontent.com/100992984/191805629-3dda2647-29d5-414e-87e2-00ecaae5dee6.png)
+### Количество эпох обучения зависит от сложности операции, которую перцептрон пытается научиться решать, а также от того насколько удачно изначально были подобранны веса и смещение.
 
 
 ## Задание 3
-### Изучить код на Python и ответить на вопросы:
-### 1. Должна ли величина loss стремиться к нулю при изменении исходных данных? Ответьте на вопрос, приведите пример выполнения кода, который подтверждает ваш ответ.
-Величина loss будет равна нулю, если исходные данные x и y будут заданы линейной функцией и коэффициент b = 0
-![Screenshot_13](https://user-images.githubusercontent.com/100992984/191829750-eaeb35b6-e298-4cc4-907b-834148887ec9.png)
+### Построить визуальную модель работы перцептрона на сцене Unity.
+---
+### Ход работы:
+
+#### Для визуализации работы перцептрона я решил сделать 8 кубиков, которые падают друг на друга и при соприкосновении создают новый кубик с необходимым значением.
+
+#### Для начала на сцене я создал 8 кубиков с прикреплённым на них текстом и платформу, на которую кубы будут падать.
+![scr1](https://user-images.githubusercontent.com/100992984/204333764-cff2c7a1-7778-4686-8d66-e4566fc39de8.png)
+
+#### К каждому кубику я прикрепил компонент Rigidbody для использования физики, а также скрипт CubeData. Скрипт CubeData содержит метод OnTriggerEnter для обработки столкновения и метод ResetCube для сброса состояния куба. Метод OnTriggerEnter меняет соответствующим образом взаимодействующие кубы и передает необходимые данные в контроллер.
+```csharp
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+
+public class CubeData : MonoBehaviour
+{
+    public double value;
+    public Material cubeColor;
+    public Color textColor;
+
+    private Vector3 initialPosition;
+
+    private void Start()
+    {
+        gameObject.name = value.ToString();
+        gameObject.GetComponent<MeshRenderer>().material = cubeColor;
+        GetComponentInChildren<TextMeshPro>().SetText(value.ToString());
+        textColor.a = 1;
+        GetComponentInChildren<TextMeshPro>().color = textColor;
+        initialPosition = transform.position;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        other.gameObject.SetActive(false);
+        gameObject.SetActive(false);
+        var valueCube1 = value;
+        var valueCube2 = other.gameObject.GetComponent<CubeData>().value;
+        if(gameObject.GetComponent<BoxCollider>().isTrigger)
+            Controller.Instance.HandleCollision(other.transform.position, valueCube1, valueCube2);
+    }
+
+    public void ResetCube()
+    {
+        this.gameObject.SetActive(true);
+        transform.position = initialPosition;
+    }
+}
+```
+![scr2](https://user-images.githubusercontent.com/100992984/204350988-9cfcda90-9541-4ad0-8746-dd70e7222b24.png)
+
+#### Далее я создал кнопки для смены набора обучающих данных, что бы можно было менять логику поведения перцептрона.
+![scr3](https://user-images.githubusercontent.com/100992984/204352390-537968fe-2359-450a-ba7b-ad2d01d034d2.png)
+
+#### На каждую кнопку повесил скрипт ButtonChangeSet. Благодаря данному скрипту в кнопке можно хранить массив обучающих данных и при клике на кнопку передавать их в контроллер.
+```csharp
+using UnityEngine;
+
+public class ButtonChangeSet : MonoBehaviour
+{
+    [SerializeField] private TrainingSet[] ts;
+
+    public void ChangeSet()
+    {
+        Controller.Instance.OnButtonClick(ts);
+    }
+}
+```
+
+#### В свою очередь, контроллер - это пустой объект на который прикреплены скрипты Controller и Perceptron. 
+![scr4](https://user-images.githubusercontent.com/100992984/204353744-5ef3f013-0815-4ff5-a59a-97e94a16fcc0.png)
+
+#### Скрипт Controller принимает данные от кнопок и переобучает перцептрон. Также контроллер при получении данных от столкнувшихся кубов обрабатывает их значения при помощи перцептрона и на основе результата создаёт соответствующий значению куб. 
+```csharp
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine;
+
+public class Controller : MonoBehaviour
+{
+    [SerializeField] private Perceptron perceptron;
+
+    private static Controller instance;
+
+    public static Controller Instance
+    {
+        get
+        {
+            if(instance == null)
+            {
+                instance = FindObjectOfType(typeof(Controller)) as Controller;
+                if(instance == null)
+                {
+                    instance = new GameObject("Controller").AddComponent<Controller>();
+                }
+            }
+            return instance;
+        }
+    }
+
+    private GameObject[] cubes;
+    private List<GameObject> tempCubes = new List<GameObject>();
+
+    [SerializeField] private GameObject whiteCube;
+    [SerializeField] private GameObject blackCube;
+
+    private bool isActive;
+
+    private void Start()
+    {
+        cubes = GameObject.FindGameObjectsWithTag("Cube");
+    }
+
+    public void OnButtonClick(TrainingSet[] ts)
+    {
+        if(isActive)
+            return;
+        
+        isActive = true;
+        perceptron.Train(10, ts);
+        foreach (var cube in cubes)
+        {
+            cube.gameObject.GetComponent<Rigidbody>().useGravity = true;
+        }
+    }
+
+    public void ResetCubes()
+    {
+        foreach (var cube in cubes)
+        {
+            cube.gameObject.GetComponent<Rigidbody>().useGravity = false;
+            cube.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            cube.GetComponent<CubeData>().ResetCube();
+        }
+
+        foreach (var tempCube in tempCubes)
+        {
+            Destroy(tempCube);
+        }
+        tempCubes.Clear();
+
+        isActive = false;
+    }
+
+    public void HandleCollision(Vector3 position, double value1, double value2)
+    {
+        var output = perceptron.CalcOutput(value1, value2);
+        if (output == 0)
+        {
+            var tempCube = Instantiate(whiteCube, position, Quaternion.identity);
+            tempCubes.Add(tempCube);
+        }
+        else if (output == 1)
+        {
+            var tempCube = Instantiate(blackCube, position, Quaternion.identity);
+            tempCubes.Add(tempCube);
+        }
+    }
+}
+```
+
+#### Помимо этого, на сцене присутствует кнопка reset. При нажатии на эту кнопку происходит вызов метода ResetCubes из скрипта Controller. Метод ResetCubes сбрасывает состояния всех кубов, возвращая их в начальное положение.
+![scr5](https://user-images.githubusercontent.com/100992984/204357537-c44031b0-edcd-4ae4-8050-5678192e9f1a.png)
+
+### Демонстрация работы визуальной модели работы перцептрона:
 
 
-### 2. Какова роль параметра Lr? Ответьте на вопрос, приведите пример выполнения кода, который подтверждает ваш ответ. В качестве эксперимента можете изменить значение параметра.
-Параметр Lr отвечает за величину шага, от которой зависит, насколько быстро или медленно будет происходить достижение оптимальных значений. 
-Чем больше параметр Lr, тем быстее будет происходить возрастание графика.
-Так, при Lr=0.0002 график за 10 повторений достигает примерно тех же значений, что и при Lr=0.000001 за 10000 повторений.
-![Screenshot_11](https://user-images.githubusercontent.com/100992984/191812930-d7bdd33b-474d-4500-bea5-cbe859c0f608.png)
-![Screenshot_12](https://user-images.githubusercontent.com/100992984/191812939-5be2cda7-265f-4694-96d5-1a5721b258fa.png)
+https://user-images.githubusercontent.com/100992984/204357828-b56d498c-b586-4230-8080-b918ff2a8479.mp4
 
-При очень маленьких значения Lr можно получить более точный график, но он будет расти медленнее и следовательно, потребуется больше времени для получения оптимального решения. При слишком больших значениях Lr график может и вовсе пройти мимо минимального значения.
+
+
+
 
 ## Выводы
 
 В ходе лабораторной работы:
-- Установил и запустил програмное обеспечение для работы с Python, а таже Unity.
-- Написал маленькие программы по выводу Hello world в Google.Colab и в консоль Unity.
-- Ознакомился с работой на Python на примере алгоритма линейной регрессии.
-- Рассмотрел работу линейной регрессии.
+- Узнал, что такое перцептрон.
+- Ознакомился с работой перцептрона.
+- Построил графики зависимости количества эпох от ошибок обучения и сделал соответствующий вывод.
+- Создал визуальную модель работы перцептрона.
